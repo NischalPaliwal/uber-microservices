@@ -1,6 +1,6 @@
 const userModel = require('../models/user.model');
 const blacklisttokenModel = require('../models/blacklisttoken.model');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { subscribeToQueue } = require('../../ride/service/rabbit');
 const EventEmitter = require('events');

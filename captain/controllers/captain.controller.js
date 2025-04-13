@@ -1,6 +1,6 @@
 const captainModel = require('../models/captain.model');
 const blacklisttokenModel = require('../models/blacklisttoken.model');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { subscribeToQueue } = require('../service/rabbit');
 
