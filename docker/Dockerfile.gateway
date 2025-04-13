@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY ./gateway ./gateway
 
-RUN cd gateway
+WORKDIR /app/gateway
+
 RUN npm install
 
 EXPOSE 3000
