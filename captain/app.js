@@ -3,7 +3,7 @@ dotenv.config();
 const express = require('express');
 const app = express();
 const connectToDB = require('./db/db');
-const userRoutes = require('./routes/user.routes');
+const userRoutes = require('./routes/captain.routes');
 const cookieParser = require('cookie-parser');
 const rabbitMQ = require('./service/rabbit');
 
