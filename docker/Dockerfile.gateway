@@ -1,0 +1,11 @@
+FROM node:23-alpine:3.20
+
+WORKDIR /app
+
+COPY ./gateway ./gateway
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD [ "npm", "run", "dev" ]

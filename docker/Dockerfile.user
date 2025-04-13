@@ -1,1 +1,15 @@
-FROM node:latest
+FROM node:23-alpine:3.20
+
+WORKDIR /app
+
+COPY ./user ./user
+
+RUN npm install
+
+ENV MONGO_URL=mongodb+srv://NischalPaliwal:uber-db-micro7@uber-microservices.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000/user
+ENV JWT_SECRET=secretnototbeshared
+ENV RABBIT_URL=amqps://qvetacoy:umem9dF2LXYOouHmETtY0Oz2wRG2qj1I@leopard.lmq.cloudamqp.com/qvetacoy
+
+EXPOSE 3001
+
+CMD [ "npm", "run", "dev" ]
