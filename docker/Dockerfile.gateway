@@ -1,9 +1,10 @@
-FROM node:23-alpine:3.20
+FROM node:23-alpine
 
 WORKDIR /app
 
 COPY ./gateway ./gateway
 
+RUN cd gateway
 RUN npm install
 
 EXPOSE 3000

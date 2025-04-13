@@ -1,9 +1,10 @@
-FROM node:23-alpine:3.20
+FROM node:23-alpine
 
 WORKDIR /app
 
 COPY ./user ./user
 
+RUN cd user
 RUN npm install
 
 ENV MONGO_URL=mongodb+srv://NischalPaliwal:uber-db-micro7@uber-microservices.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000/user

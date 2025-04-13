@@ -5,7 +5,7 @@ services:
       context: ./
       dockerfile: docker/Dockerfile.gateway
     ports:
-      -"3000:3000"
+      - "3000:3000"
   captain:
     build:
       context: ./
