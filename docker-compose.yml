@@ -1,0 +1,44 @@
+name: Containerize Uber Microservices
+services:
+  gateway:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.gateway
+    ports:
+      -"3000:3000"
+  captain:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.captain
+    ports:
+      - "3002:3002"
+    environment:
+      - MONGO_URL=mongodb+srv://NischalPaliwal:uber-db-micro7@uber-microservices.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000/captain
+      - JWT_SECRET=secretnototbeshared
+      - RABBIT_URL=amqps://qvetacoy:umem9dF2LXYOouHmETtY0Oz2wRG2qj1I@leopard.lmq.cloudamqp.com/qvetacoy
+    depends_on:
+      - gateway
+  ride:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.ride
+    ports:
+      - "3003:3003"
+    environment:
+      - JWT_SECRET=nottobesharedwithanyone
+      - MONGO_URL=mongodb+srv://NischalPaliwal:uber-db-micro7@uber-microservices.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000/ride
+      - RABBIT_URL=amqps://qvetacoy:umem9dF2LXYOouHmETtY0Oz2wRG2qj1I@leopard.lmq.cloudamqp.com/qvetacoy
+    depends_on:
+      - gateway
+  user:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.user
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URL=mongodb+srv://NischalPaliwal:uber-db-micro7@uber-microservices.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000/user
+      - JWT_SECRET=secretnototbeshared
+      - RABBIT_URL=amqps://qvetacoy:umem9dF2LXYOouHmETtY0Oz2wRG2qj1I@leopard.lmq.cloudamqp.com/qvetacoy
+    depends_on:
+      - gateway
